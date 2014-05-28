@@ -2,64 +2,39 @@ require 'spec_helper'
 
 describe "Static pages" do
 
+ subject { page }
   describe "Home page" do
+before { visit root_path }
 
-    it "should have the content 'Sampl'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sampl')
-    end
-
-    it "should not have a custom page title" do
-      visit '/static_pages/home'
-      expect(page).not_to have_title('| Home')
-    end
+    it { should have_content('Witaj') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title('| Home') }
   end
 
   describe "Help page" do
+    before { visit help_path }
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Help")
-    end
+    it { should have_content('Help') }
+    it { should have_title(full_title('Help')) }
   end
 
-  describe "About page" do
+ describe "O nas" do
+    before { visit about_path }
 
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
-    it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | About Us")
-    end
+    it { should have_content('O nas') }
+    it { should have_title(full_title('About Us')) }
   end
 
-   describe "Kontakt" do
+describe "Kontakt page" do
+    before { visit kontakt_path }
 
-    it "should have the content 'Kontakt'" do
-      visit '/static_pages/kontakt'
-      expect(page).to have_content('Kontakt')
-    end
-    it "should have the title 'Kontakt'" do
-      visit '/static_pages/kontakt'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Kontakt")
-    end
+    it { should have_content('Kontakt') }
+    it { should have_title(full_title('Kontakt')) }
   end
-   describe "Contact" do
+ describe "Contact page" do
+    before { visit contact_path }
 
-    it "should have the content 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_content('Contact')
-    end
-    it "should have the title 'Contact'" do
-      visit '/static_pages/contact'
-      expect(page).to have_title("Ruby on Rails Tutorial Sample App | Contact")
-    end
+    it { should have_content('Contact') }
+    it { should have_title(full_title('Contact')) }
   end
 end
